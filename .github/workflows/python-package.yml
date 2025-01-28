@@ -83,7 +83,7 @@ jobs:
         uses: docker/setup-qemu-action@v3
         # Windows: We install Cuda on the agent (slow)
       - uses: Jimver/cuda-toolkit@v0.2.21
-        if: startsWith(matrix.os, 'windows')
+        if: startsWith(matrix.os, 'windows') || ((startsWith(matrix.arch, 'aarch64') && matrix.cuda_version >= '12.6.0'))
         id: cuda-toolkit
         with:
           cuda: ${{ matrix.cuda_version }}
